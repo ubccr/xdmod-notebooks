@@ -1,10 +1,10 @@
 # Instructions
 
-As of July 2022 there are seperate docker images for ARM and x86 systems. If you are running an
-x86 system then edit the Dockerfile and change the `FROM` line as per the inline comments
-in the file.
+This directory contains a configuration file to build a
+docker image containing Jupyter notebooks and the python-based XDMoD
+interface library.
 
-Then build the docker as follows:
+Build the docker image as follows:
 ```sh
 docker build -t xdmodnotebooks .
 ```
