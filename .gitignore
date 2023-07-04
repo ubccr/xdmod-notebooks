@@ -130,3 +130,6 @@ dmypy.json
 
 # OSX files
 .DS_store
+
+# Vi swap files
+.*.swp
