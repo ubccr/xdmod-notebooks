@@ -25,11 +25,15 @@ Follow the instructions below to set up your system to run the notebooks in Jupy
     ```
     docker build -t xdmod-notebooks .
     ```
-1. Run a new Docker container named `xdmod-notebooks` on port 8888 by running the command:
+1. Run a new Docker container named `xdmod-notebooks` on port `8888` by running the command:
     ```
     docker run -p8888:8888 --name xdmod-notebooks xdmod-notebooks
     ```
-1. Copy-paste the URL listed on your Terminal into a browser to take you to JupyterLab.
+1. Copy-paste the URL listed on your Terminal into a web browser to take you to JupyterLab.
+1. Subsequent runs of the Docker container should use this command instead:
+    ```
+    docker start -i xdmod-notebooks
+    ```
 
 ## Usage
 1. Once you have JupyterLab open, you can upload and run the notebooks from your copy of this repository by clicking the Upload button (![Screenshot of upload button](docs/img/jupyter-upload.jpg)). If you are not familiar with Jupyter notebooks, the "Help" tab may provide useful information.
