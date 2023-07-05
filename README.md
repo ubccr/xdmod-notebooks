@@ -1,10 +1,10 @@
 # xdmod-notebooks
 This repository contains example Jupyter notebooks demonstrating how to use the XDMoD Data Analytics Framework via the [`xdmod-data` package](https://github.com/ubccr/xdmod-data).
 
-## Download this `xdmod-notebooks` repository
+## Download
 This `xdmod-notebooks` repository can be downloaded from this GitHub page by clicking the "Code" button and choosing the method of download.
 
-## Set up JupyterLab
+## Setup
 Follow the instructions below to set up your system to run the notebooks in JupyterLab either through Anaconda or Docker.
 
 ### Anaconda
@@ -22,12 +22,15 @@ Follow the instructions below to set up your system to run the notebooks in Jupy
 1. Run a new Docker container named `xdmod-notebooks` on port 8888 by running the command `docker run -p8888:8888 --name xdmod-notebooks xdmod-notebooks`.
 1. Copy-paste the URL listed on your Terminal into a browser to take you to JupyterLab.
 
-## Upload notebooks into JupyterLab
-1. Once you have JupyterLab open, you can import the notebooks from your copy of this repository by clicking the Upload button ![Screenshot of upload button](docs/img/jupyter-upload.jpg).
+## Usage
+1. Once you have JupyterLab open, you can upload and run the notebooks from your copy of this repository by clicking the Upload button (![Screenshot of upload button](docs/img/jupyter-upload.jpg)). If you are not familiar with Jupyter notebooks, the "Help" tab may provide useful information.
 
 ## Support
 For support, please see [this page](https://open.xdmod.org/support.html). If you email for support, please include the following:
-* `xdmod-data` version number (obtained by running the command in JupyterLab `python3 -m pip freeze | grep xdmod-data`).
+* `xdmod-data` version number, obtained by running the command in JupyterLab:
+    ```
+    python3 -m pip freeze | grep xdmod-data`
+    ```
 * Operating system version.
 * Anaconda or Docker version.
 * JupyterLab version.
