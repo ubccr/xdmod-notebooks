@@ -12,14 +12,23 @@ Follow the instructions below to set up your system to run the notebooks in Jupy
 1. Open Anaconda Navigator following [these instructions](https://docs.anaconda.com/free/anaconda/install/verify-install/).
 1. Launch JupyterLab.
 1. Open a Terminal.
-1. Install the packages needed to run the notebooks using the command `python3 -m pip install --upgrade xdmod-data python-dotenv tabulate`.
+1. Install the packages needed to run the example notebooks using the command:
+    ```
+    python3 -m pip install --upgrade xdmod-data python-dotenv tabulate
+    ```
 
 ### Docker
 1. Install Docker following [these instructions](https://docs.docker.com/engine/install/).
 1. Make sure you have downloaded this repository.
 1. In a terminal / command prompt, change directories to your downloaded copy of `xdmod-notebooks` and then into the `docker` directory inside there.
-1. Build a Docker image called `xdmod-notebooks` from the provided Dockerfile by running the command `docker build -t xdmod-notebooks .`
-1. Run a new Docker container named `xdmod-notebooks` on port 8888 by running the command `docker run -p8888:8888 --name xdmod-notebooks xdmod-notebooks`.
+1. Build a Docker image called `xdmod-notebooks` from the provided Dockerfile by running the command (make sure to include the dot):
+    ```
+    docker build -t xdmod-notebooks .
+    ```
+1. Run a new Docker container named `xdmod-notebooks` on port 8888 by running the command:
+    ```
+    docker run -p8888:8888 --name xdmod-notebooks xdmod-notebooks
+    ```
 1. Copy-paste the URL listed on your Terminal into a browser to take you to JupyterLab.
 
 ## Usage
@@ -29,7 +38,7 @@ Follow the instructions below to set up your system to run the notebooks in Jupy
 For support, please see [this page](https://open.xdmod.org/support.html). If you email for support, please include the following:
 * `xdmod-data` version number, obtained by running the command in JupyterLab:
     ```
-    python3 -m pip freeze | grep xdmod-data`
+    python3 -m pip freeze | grep xdmod-data
     ```
 * Operating system version.
 * Anaconda or Docker version.
