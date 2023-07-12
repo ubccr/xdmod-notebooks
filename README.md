@@ -2,7 +2,7 @@
 This repository contains example Jupyter notebooks demonstrating how to use the XDMoD Data Analytics Framework via the [`xdmod-data` package](https://github.com/ubccr/xdmod-data).
 
 ## Download
-This `xdmod-notebooks` repository can be downloaded from this GitHub page by clicking the "Code" button and choosing the method of download.
+This `xdmod-notebooks` repository can be downloaded from this GitHub page by clicking the green "Code" button at the top of this page and choosing the method of download.
 
 ## Setup
 Follow the instructions below to set up your system to run the notebooks in JupyterLab either through Anaconda or Docker.
