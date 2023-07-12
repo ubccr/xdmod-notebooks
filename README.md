@@ -55,6 +55,9 @@ For support, please see [this page](https://open.xdmod.org/support.html). If you
 * A description of the problem you are experiencing.
 * Detailed steps to reproduce the problem.
 
+## License
+The notebooks in this repository are released under the GNU Lesser General Public License ("LGPL") Version 3.0. See the [LICENSE](LICENSE) file for details.
+
 ## Reference
 When referencing XDMoD, please cite the following publication:
 
