@@ -33,8 +33,8 @@ Follow the instructions below to set up your system to run the notebooks in Jupy
     ```
     docker run -p8888:8888 --name xdmod-notebooks xdmod-notebooks
     ```
-1. Copy-paste the URL listed on your Terminal into a web browser to take you to JupyterLab.
-1. Subsequent runs of the Docker container should use this command instead:
+1. Copy-paste the URL listed on your terminal / command prompt into a web browser to take you to JupyterLab.
+1. Subsequent runs of the Docker container should use this command instead of `docker run`:
     ```
     docker start -i xdmod-notebooks
     ```
