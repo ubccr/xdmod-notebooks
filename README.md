@@ -44,9 +44,10 @@ Follow the instructions below to set up your system to run the notebooks in Jupy
 
 ## Support
 For support, please see [this page](https://open.xdmod.org/support.html). If you email for support, please include the following:
-* `xdmod-data` version number, obtained by running this command in JupyterLab:
+* `xdmod-data` version number, obtained by running this code in a Jupyter cell:
     ```
-    python3 -m pip freeze | grep xdmod-data
+    from xdmod_data import __version__
+    print(__version__)
     ```
 * Operating system version.
 * Anaconda or Docker version.
