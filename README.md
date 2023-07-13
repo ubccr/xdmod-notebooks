@@ -24,7 +24,7 @@ Follow the instructions below to set up your system to run the notebooks in Jupy
 ### Docker
 1. Install Docker following [these instructions](https://docs.docker.com/engine/install/).
 1. Make sure you have [downloaded this repository](#download).
-1. In a terminal / command prompt, change directories to your downloaded copy of `xdmod-notebooks` and then into the `docker` directory inside there.
+1. In a terminal / command prompt, change directories to your downloaded copy of `xdmod-notebooks`.
 1. Build a Docker image called `xdmod-notebooks` from the provided Dockerfile by running this command (make sure to include the dot):
     ```
     docker build -t xdmod-notebooks .
