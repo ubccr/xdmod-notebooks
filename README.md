@@ -10,32 +10,13 @@ Follow the instructions below to set up your system to run the notebooks in Jupy
 ### Anaconda
 1. Install Anaconda following [these instructions](https://docs.anaconda.com/free/anaconda/install/index.html).
 1. Open Anaconda Navigator following [these instructions](https://docs.anaconda.com/free/anaconda/install/verify-install/).
-1. Launch JupyterLab.
-1. Open a Terminal.
-1. Run this command to make sure your conda environment is deactivated so the correct installation of Python can be loaded:
-    ```
-    conda deactivate
-    ```
-1. Run this command to activate your conda environment so the correct installation of Python can be loaded:
-    ```
-    conda activate
-    ```
-1. Run this command to install the packages needed to run the example notebooks:
-    ```
-    python3 -m pip install --upgrade xdmod-data python-dotenv tabulate
-    ```
+1. Launch JupyterLab (NOT Jupyter Notebook).
 
 ### Docker
 1. Install Docker following [these instructions](https://docs.docker.com/engine/install/).
-1. Make sure you have [downloaded this repository](#download).
-1. In a terminal / command prompt, change directories to your downloaded copy of `xdmod-notebooks`.
-1. Build a Docker image called `xdmod-notebooks` from the provided Dockerfile by running this command (make sure to include the dot):
+1. Run a new Docker container named `xdmod-notebooks` on port `8888` based on Jupyter's latest SciPy Docker image by running this command:
     ```
-    docker build -t xdmod-notebooks .
-    ```
-1. Run a new Docker container named `xdmod-notebooks` on port `8888` by running this command:
-    ```
-    docker run -p8888:8888 --name xdmod-notebooks xdmod-notebooks
+    docker run -p8888:8888 --name xdmod-notebooks jupyter/scipy-notebook:latest
     ```
 1. Copy-paste the URL listed on your terminal / command prompt into a web browser to take you to JupyterLab.
 1. Note: Subsequent runs of the Docker container should use this command instead of `docker run`:
