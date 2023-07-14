@@ -12,7 +12,11 @@ Follow the instructions below to set up your system to run the notebooks in Jupy
 1. Open Anaconda Navigator following [these instructions](https://docs.anaconda.com/free/anaconda/install/verify-install/).
 1. Launch JupyterLab.
 1. Open a Terminal.
-1. If your conda environment is not activated (i.e., if the command line does not have `(base)` in front of it), activate it by running this command:
+1. Make sure your conda environment is deactivated so the right version of Python can be loaded:
+    ```
+    conda deactivate
+    ```
+1. Activate your conda environment so the right version of Python can be loaded:
     ```
     conda activate
     ```
