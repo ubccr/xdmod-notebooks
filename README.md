@@ -25,7 +25,11 @@ Follow the instructions below to set up your system to run the notebooks in Jupy
     ```
 
 ## Usage
-1. Once you have JupyterLab open, you can upload and run the notebooks from your copy of this repository by clicking the Upload button (![Screenshot of upload button](docs/img/jupyter-upload.jpg)). If you are not familiar with Jupyter notebooks, the "Help" tab may provide useful information.
+* Once you have JupyterLab open, you can upload and run the notebooks from your copy of this repository by clicking the Upload button (![Screenshot of upload button](docs/img/jupyter-upload.jpg)). If you are not familiar with Jupyter notebooks, the "Help" tab may provide useful information.
+* The notebooks can be run independently and in any order; however, you may find this order to be the most helpful when starting out:
+    1. XDMoD-Data-First-Example.ipynb
+    1. XDMoD-Data-Raw-Data-Example.ipynb
+    1. XDMoD-Data-Machine-Learning-Example.ipynb
 
 ## Support
 For support, please see [this page](https://open.xdmod.org/support.html). If you email for support, please include the following:
