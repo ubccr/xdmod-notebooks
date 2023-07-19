@@ -1,6 +1,0 @@
-FROM jupyter/scipy-notebook:latest
-
-RUN pip3 install git+https://github.com/ubccr/xdmod-python.git
-RUN pip3 install plotly
-RUN pip3 install python-dotenv
-RUN pip3 install tabulate
