@@ -2,7 +2,7 @@
 This repository contains example Jupyter notebooks demonstrating how to use the XDMoD Data Analytics Framework via the [`xdmod-data` package](https://pypi.org/project/xdmod-data/).
 
 ## Download
-This `xdmod-notebooks` repository can be downloaded from this GitHub page by clicking the green "Code" button at the top of this page and choosing the method of download ("Download ZIP" is the simplest option).
+The latest version of this `xdmod-notebooks` repository can be downloaded from the [releases page](releases) — under "Assets," click one of the "Source code" links.
 
 ## Setup
 Follow the instructions below to set up your system to run the notebooks in JupyterLab either through Anaconda or Docker.
@@ -42,6 +42,7 @@ For support, please see [this page](https://open.xdmod.org/support.html). If you
 * Anaconda or Docker version.
 * JupyterLab version.
 * Name of the notebook you are using.
+* Version number of the notebook listed at the top and bottom of the notebook.
 * A description of the problem you are experiencing.
 * Detailed steps to reproduce the problem.
 
