@@ -10,6 +10,7 @@
 - Add example R Markdown file ([\#27](https://github.com/ubccr/xdmod-notebooks/pull/27)).
 - Update changelog, R upgrade instructions, and R code style ([\#29](https://github.com/ubccr/xdmod-notebooks/pull/29)).
 - Add more plot examples to the intro notebook ([\#28](https://github.com/ubccr/xdmod-notebooks/pull/28)).
+- Replace machine learning regression example with classification example ([\#23](https://github.com/ubccr/xdmod-notebooks/pull/23)).
 
 ## v1.0.0 (2023-07-21)
 - Initial release.
