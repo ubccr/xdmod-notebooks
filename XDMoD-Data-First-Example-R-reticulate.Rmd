@@ -1,0 +1,160 @@
+---
+title: 'XDMOD '
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+date: "2023-09-25"
+---
+
+# Prerequisits
+
+This example use python API for XDMoD analytic framework.
+So you already need to have installed python version. 
+In R you should install `reticulate` library and bound the python with XDMoD framework.
+
+## Quick Conda Install
+
+Here is a quick tip on installation (tested in WSL ubuntu)
+
+```bash
+conda install requests
+conda create -n xdmod-notebooks -y python=3.11 r=4.3
+conda activate xdmod-notebooks
+# base-notebook
+conda install -y 'jupyterlab' 'notebook' 'jupyterhub' 'nbclassic'
+# scipy-notebook
+conda install -y  'altair' 'beautifulsoup4' 'bokeh' 'bottleneck' 'cloudpickle' \
+    'conda-forge::blas=*=openblas' \
+    'cython' 'dask' 'dill' 'h5py' 'ipympl' 'ipywidgets' 'jupyterlab-git' \
+    'matplotlib-base' 'numba' 'numexpr' 'openpyxl' 'pandas' 'patsy' 'protobuf' \
+    'pytables' 'scikit-image' 'scikit-learn' 'scipy' 'seaborn' 'sqlalchemy' \
+    'statsmodels' 'sympy' 'widgetsnbextension' 'xlrd'
+# r-notebook
+conda install -y 'r-base' 'r-caret' 'r-crayon' 'r-devtools' 'r-e1071' \
+    'r-forecast' 'r-hexbin' 'r-htmltools' 'r-htmlwidgets' 'r-irkernel' \
+    'r-nycflights13' 'r-randomforest' 'r-rcurl' 'r-rmarkdown' 'r-rodbc' \
+    'r-rsqlite' 'r-shiny' 'r-tidymodels' 'r-tidyverse' 'unixodbc'
+
+# Other
+conda install -y 'pymysql' 'requests' \
+    'r-plotly' 'r-repr' 'r-irdisplay' 'r-pbdzmq' 'r-reticulate' 'r-cowplot' \
+    'r-rjson' 'r-dotenv'
+    
+# Install xdmod-data
+pip install --upgrade 'xdmod-data>=1.0.0,<2.0.0' python-dotenv tabulate
+
+# Install rstudio server
+wget -q "https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2023.12.1-402-amd64.deb"
+dpkg -i rstudio-server-*-amd64.deb
+rm rstudio-server-*-amd64.deb
+
+# specify which version of r to use
+echo "rsession-which-r=$(which R)" | sudo tee -a /etc/rstudio/rserver.conf
+```
+
+The first time rstudio server will be started on following times start is as:
+
+```bash
+# to start rserver:
+sudo /usr/lib/rstudio-server/bin/rserver
+
+```
+
+# Setup
+
+```{r setup, include=T}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dotenv)
+library(reticulate)
+library(tidyverse)
+library(plotly)
+library(knitr)
+library(rmarkdown)
+
+# replace xdmod-notebooks with conda enviroment for python to use
+use_condaenv("xdmod-notebooks")
+# on windows ~ points to Documents
+load_dot_env(path.expand("~/xdmod-data.env"))
+```
+
+
+# Use XDMoD Analytical Framework as Python API
+
+## Using python chunks
+
+```{python}
+# This is a python chunk
+# Initialize the XDMoD Data Warehouse
+from xdmod_data.warehouse import DataWarehouse
+dw = DataWarehouse('https://xdmod.access-ci.org')
+```
+
+```{python}
+# This is a python chunk
+# Get data
+with dw:
+    data = dw.get_data(
+        duration=('2023-01-01', '2023-04-30'),
+        realm='Jobs',
+        metric='Number of Users: Active',
+    )
+```
+
+
+
+```{r}
+# Use data in R
+df <- py$data %>% 
+    rownames_to_column(var="Time") %>% # Move row names to column
+    tibble() %>% # use newer data.frame
+    mutate(Time=ymd(Time)) # convert character to date
+
+df %>% paged_table()
+```
+
+
+```{r}
+# plot
+ggplotly(
+    ggplot(df, aes(x=Time,y=`Number of Users: Active`)) +
+        geom_line()
+)
+```
+
+## Calling from R using reticulate
+
+```{r}
+# Initialize the XDMoD Data Warehouse
+warehouse <- import("xdmod_data.warehouse")
+dw <- warehouse$DataWarehouse('https://xdmod.access-ci.org')
+```
+
+```{r}
+# Initialize the XDMoD Data Warehouse
+with(dw,{
+    data2 <- dw$get_data(
+        duration=c('2023-01-01', '2023-04-30'),
+        realm='Jobs',
+        metric='Number of Users: Active',
+)})
+```
+
+```{r rows.print=20}
+# Use data in R
+df2 <-data2 %>% 
+    rownames_to_column(var="Time") %>% # Move row names to column
+    tibble() %>% # use newer data.frame
+    mutate(Time=ymd(Time)) # convert character to date
+
+df2 %>% paged_table()
+```
+
+```{r}
+# plot
+ggplotly(
+    ggplot(df2, aes(x=Time,y=`Number of Users: Active`)) +
+        geom_line()
+)
+```
