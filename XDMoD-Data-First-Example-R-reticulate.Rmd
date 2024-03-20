@@ -53,17 +53,13 @@ rm rstudio-server-*-amd64.deb
 echo "rsession-which-r=$(which R)" | sudo tee -a /etc/rstudio/rserver.conf
 ```
 
-The first time rstudio server will be started on following times start is as:
+Launch rserver at <http://localhost:8787>
 
-```bash
-# to start rserver:
-sudo /usr/lib/rstudio-server/bin/rserver
 
-```
-
-# Setup
+# Library Load
 
 ```{r setup, include=T}
+# load libraries
 knitr::opts_chunk$set(echo = TRUE)
 
 library(dotenv)
@@ -75,7 +71,7 @@ library(rmarkdown)
 
 # replace xdmod-notebooks with conda enviroment for python to use
 use_condaenv("xdmod-notebooks")
-# on windows ~ points to Documents
+# on windows ~ points to Documents, adjust accordently
 load_dot_env(path.expand("~/xdmod-data.env"))
 ```
 
@@ -84,12 +80,18 @@ load_dot_env(path.expand("~/xdmod-data.env"))
 
 ## Using python chunks
 
+First, initialize the XDMoD Data Warehouse.
+Run the code below to prepare for getting data from the XDMoD data warehouse at the given URL.
+
 ```{python}
 # This is a python chunk
 # Initialize the XDMoD Data Warehouse
 from xdmod_data.warehouse import DataWarehouse
 dw = DataWarehouse('https://xdmod.access-ci.org')
 ```
+
+Next, get the data.
+Run the code below to use the `get_data()` method to request data from XDMoD and load them into a DataFrame. This example gets the number of active users of ACCESS-allocated resources over a 4-month period. Each of the parameters of the method will be explained later in this notebook. Use `with` to create a runtime context; this is also explained later in this notebook.
 
 ```{python}
 # This is a python chunk
@@ -102,7 +104,8 @@ with dw:
     )
 ```
 
-
+Slight modification to converted DataFrame:
+`Tidyverse` approach do not use row-names and convert text to date.
 
 ```{r}
 # Use data in R
@@ -114,6 +117,7 @@ df <- py$data %>%
 df %>% paged_table()
 ```
 
+Plot the data
 
 ```{r}
 # plot
@@ -125,6 +129,9 @@ ggplotly(
 
 ## Calling from R using reticulate
 
+Now we can repeat same things using `reticulate` generated R interface,
+the steps are same: init warehouse, get-data, convert data and use it.
+
 ```{r}
 # Initialize the XDMoD Data Warehouse
 warehouse <- import("xdmod_data.warehouse")
@@ -132,7 +139,7 @@ dw <- warehouse$DataWarehouse('https://xdmod.access-ci.org')
 ```
 
 ```{r}
-# Initialize the XDMoD Data Warehouse
+# Query data
 with(dw,{
     data2 <- dw$get_data(
         duration=c('2023-01-01', '2023-04-30'),
@@ -148,7 +155,7 @@ df2 <-data2 %>%
     tibble() %>% # use newer data.frame
     mutate(Time=ymd(Time)) # convert character to date
 
-df2 %>% paged_table()
+df2
 ```
 
 ```{r}
@@ -158,3 +165,180 @@ ggplotly(
         geom_line()
 )
 ```
+
+## Do further data processing
+You can do further processing on the DataFrame to produce analysis and plots beyond those that are available in the XDMoD portal.
+
+Run the code below to add a column for the day of the week:
+
+```{r}
+df2$weekday <- factor(
+    weekdays(df2$Time), 
+    levels=c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
+             "Saturday", "Sunday"))
+df2
+```
+
+Run the code below to show a box plot of the data grouped by day of the week:
+
+```{r}
+ggplotly(
+    ggplot(df2, aes(x=weekday,y=`Number of Users: Active`)) +
+        geom_boxplot()
+)
+```
+
+# Details of the `get_data()` method
+Now that you have seen a basic example of using the `get_data()` method, read below for more details on how it works.
+
+## Wrap data warehouse calls in a runtime context
+XDMoD data is accessed over a network connection, which involves establishing connections and creating temporary resources. To ensure these connections and resources are cleaned up properly in spite of any runtime errors, you should call data warehouse methods within a **runtime context** by using Python's `with` statement to wrap the execution of XDMoD queries, store the result, and execute any long running calculations outside of the runtime context, as in the template below. `reticulate` package of R reflect this layout.
+
+```r
+with(dw, {
+    # XDMoD queries would go here
+    pass
+    })
+# Data processing would go here
+pass
+```
+
+## Default parameters
+
+The `get_data()` method has a number of parameters; their default values are shown below, and the parameters are explained in more detail further below.
+
+```{r}
+with(dw, {
+    data <- dw$get_data(
+        duration='Previous month',
+        realm='Jobs',
+        metric='CPU Hours: Total',
+        dimension='None',
+        filters=list(),
+        dataset_type='timeseries',
+        aggregation_unit='Auto'
+    )})
+data
+```
+
+## Duration
+
+The **duration** provides the time constraints of the data to be fetched from the XDMoD data warehouse.
+
+As already seen, you can specify the duration as start and end times:
+
+```{r}
+with(dw, {
+    data <- dw$get_data(duration=c('2023-01-01', '2023-04-30'))})
+data
+```
+
+You can instead specify the duration using a special string value; a list of the valid values can be obtained by calling the `get_durations()` method.
+
+```{r}
+with(dw, {
+    durations = dw$get_durations()
+    })
+durations
+```
+
+## Realm
+
+A **realm** is a category of data in the XDMoD data warehouse.
+You can use the `describe_realms()` method to get a DataFrame containing the list of available realms.
+
+
+```{r}
+with(dw, {
+    realms <- dw$describe_realms()
+    })
+realms
+```
+
+## Metric
+
+A **metric** is a statistic for which data exists in a given realm. You can use the `describe_metrics(realm)` method to get a DataFrame containing the list of valid metrics in the given realm. The realm must be passed in as a string.
+
+```{r}
+with(dw,{
+    metrics <- dw$describe_metrics('Jobs')})
+metrics %>% kable(format="html")
+```
+## Dimension
+A **dimension** is a grouping of data. You can use the `describe_dimensions(realm)` method to get a DataFrame containing the list of valid dimensions in the given realm. The realm must be passed in as a string.
+
+```{r}
+with(dw,{
+    dimensions <- dw$describe_dimensions('Jobs') })
+dimensions %>% kable(format="html")
+```
+
+## Pass in realms, metrics, and dimensions using labels or IDs
+
+For methods in the API that take realms, metrics, and/or dimensions as arguments, you can pass them in as their labels or their IDs.
+
+```{r}
+with(dw, {
+    data <- dw$get_data(
+        duration='10 year',
+        realm='Allocations',
+        metric='NUs: Allocated', # 'allocated_nu' also works
+        dimension='Resource Type',  # 'resource_type' also works
+    )})
+data
+```
+
+## Filters
+
+**Filters** allow you to include only data that have certain values for given dimensions. You can use the `get_filter_values(realm, dimension)` method to get a DataFrame containing the list of valid filter values for the given dimension in the given realm. The realm and dimension must be passed in as strings.
+
+```{r}
+with(dw, {
+    filter_values <- dw$get_filter_values('Jobs', 'Resource') }) # 'resource' also works
+filter_values
+```
+
+For methods in the API that take filters as arguments, you must specify the filters as a dictionary in which the keys are dimensions (labels or IDs) and the values are string filter values (labels or IDs) or sequences of string filter values. For example, to return only data for which the field of science is biophysics and the resource is either NCSA Delta GPU or TACC Stampede2:
+
+```{r}
+with(dw,{
+    data <- dw$get_data(
+        filters=list(
+            'Field of Science'='Biophysics', # 'fieldofscience': '246' also works
+            'Resource'= c( # 'resource' also works
+                'NCSA DELTA GPU', # '3032' also works
+                'STAMPEDE2 TACC' # '2825' also works
+            )
+        ),
+    )})
+
+data
+```
+
+## Dataset Type
+The **dataset type** can either be 'timeseries' (the default), in which data is grouped by a time [aggregation unit](#Aggregation-unit), or 'aggregate', in which the data is aggregated across the entire [duration](#Duration). For 'aggregate', the results are returned as a Pandas Series rather than a DataFrame.
+
+```{r}
+with(dw, {
+    data <- dw$get_data(dataset_type='timeseries')})
+
+data
+```
+
+### Aggregation unit
+
+The **aggregation unit** specifies how data is aggregated by time. You can get a list of valid aggregation units by calling the `get_aggregation_units()` method.
+
+```{r}
+with(dw,{
+    aggregation_units <- dw$get_aggregation_units()})
+
+aggregation_units
+```
+
+
+## Additional Examples
+For additional examples, please see the [xdmod-notebooks repository](https://github.com/ubccr/xdmod-notebooks).
+
+
+
