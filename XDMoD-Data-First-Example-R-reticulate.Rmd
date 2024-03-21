@@ -3,6 +3,10 @@ title: 'XDMOD '
 output:
   html_document:
     df_print: paged
+    toc: yes
+    toc_float: yes
+    toc_depth: 4
+    mathjax: null
   pdf_document: default
 date: "2023-09-25"
 ---
@@ -40,23 +44,50 @@ conda install -y 'r-base' 'r-caret' 'r-crayon' 'r-devtools' 'r-e1071' \
 conda install -y 'pymysql' 'requests' \
     'r-plotly' 'r-repr' 'r-irdisplay' 'r-pbdzmq' 'r-reticulate' 'r-cowplot' \
     'r-rjson' 'r-dotenv'
-    
-# Install xdmod-data
-pip install --upgrade 'xdmod-data>=1.0.0,<2.0.0' python-dotenv tabulate
+```
 
-# Install rstudio server
+Install rstudio server:
+
+```bash
 wget -q "https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2023.12.1-402-amd64.deb"
-dpkg -i rstudio-server-*-amd64.deb
+sudo dpkg -i rstudio-server-*-amd64.deb
 rm rstudio-server-*-amd64.deb
 
 # specify which version of r to use
 echo "rsession-which-r=$(which R)" | sudo tee -a /etc/rstudio/rserver.conf
 ```
 
+Alternatively you can install regular rstudio:
+
+```bash
+wget https://download1.rstudio.org/electron/jammy/amd64/rstudio-2023.12.1-402-amd64.deb
+sudo dpkg -i rstudio-2023.12.1-402-amd64.deb
+rm rstudio-*-amd64.deb
+```
+
+
+Finally, install xdmod-data python API:
+
+```bash
+pip install --upgrade 'xdmod-data>=1.0.0,<2.0.0' python-dotenv tabulate
+```
+
 Launch rserver at <http://localhost:8787>
 
+## Obtain an XDMoD-API token
 
-# Library Load
+You will need to get XDMoD-API token in order to access XDMoD Analytical Framework.
+Follow [these instructions](https://github.com/ubccr/xdmod-data#api-token-access) to obtain an API token.
+Write the token to `~/xdmod-data.env` file. It will be loaded soon and you would not need to keep token in Rmarkdown file
+
+```bash
+cat > ~/xdmod-data.env << EOF
+XDMOD_API_TOKEN=<my secret xdmod api tocken>
+EOF
+```
+# Use XDMoD Analytical Framework as Python API
+
+## Library Load
 
 ```{r setup, include=T}
 # load libraries
@@ -74,9 +105,6 @@ use_condaenv("xdmod-notebooks")
 # on windows ~ points to Documents, adjust accordently
 load_dot_env(path.expand("~/xdmod-data.env"))
 ```
-
-
-# Use XDMoD Analytical Framework as Python API
 
 ## Using python chunks
 
@@ -191,7 +219,7 @@ ggplotly(
 # Details of the `get_data()` method
 Now that you have seen a basic example of using the `get_data()` method, read below for more details on how it works.
 
-## Wrap data warehouse calls in a runtime context
+**Wrap data warehouse calls in a runtime context**
 XDMoD data is accessed over a network connection, which involves establishing connections and creating temporary resources. To ensure these connections and resources are cleaned up properly in spite of any runtime errors, you should call data warehouse methods within a **runtime context** by using Python's `with` statement to wrap the execution of XDMoD queries, store the result, and execute any long running calculations outside of the runtime context, as in the template below. `reticulate` package of R reflect this layout.
 
 ```r
@@ -340,5 +368,6 @@ aggregation_units
 ## Additional Examples
 For additional examples, please see the [xdmod-notebooks repository](https://github.com/ubccr/xdmod-notebooks).
 
-
+---
+XDMoD Data Analytics Framework v1.0.0
 
