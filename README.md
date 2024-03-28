@@ -31,8 +31,11 @@ Follow the instructions below to set up your system to run the notebooks in Jupy
     1. XDMoD-Data-Raw-Data-Example.ipynb
     1. XDMoD-Data-Machine-Learning-Example.ipynb
 
+### R example
+An example R Markdown file is available [here](R).
+
 ## Feedback / Feature Requests
-We welcome your feedback and feature requests for the XDMoD Data Analytics Framework via email: `ccr-xdmod-help` at `buffalo.edu`.
+We welcome your feedback and feature requests for the XDMoD Data Analytics Framework via email: ccr-xdmod-help@buffalo.edu.
 
 ## Support
 For support, please see [this page](https://open.xdmod.org/support.html). If you email for support, please include the following:
