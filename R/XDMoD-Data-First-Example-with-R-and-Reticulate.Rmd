@@ -1,12 +1,12 @@
 ---
 title: "XDMoD Data Analytics Framework — First Example with R and Reticulate"
 output:
-  html_notebook:
+  html_document:
+    toc: true
+    toc_depth: '4'
     df_print: paged
-    toc: yes
-    toc_float: yes
-    toc_depth: 4
-  pdf_document: default
+  pdf_document:
+    df_print: kable
 ---
 
 v1.0.1-beta.1
@@ -37,7 +37,7 @@ FutureWarning: Index.format is deprecated and will be removed in a future versio
 
 ## Load the required R libraries
 
-```{r}
+```{r setup, results='hide',message=FALSE,warning=FALSE}
 library(dotenv)
 library(knitr)
 library(plotly)
@@ -50,79 +50,6 @@ library(tidyverse)
 
 ```{r}
 use_condaenv("xdmod-notebooks")
-```
-
-## Define the XDMoD Plotly layout function
-
-```{r}
-xdmod_plotly_layout = function (p, title) {
-  layout(
-    p,
-    hoverlabel = list(bgcolor = "white"),
-    colorway = c(
-      "#1199FF", "#DB4230", "#4E665D", "#F4A221", "#66FF00",
-      "#33ABAB", "#A88D95", "#789ABC", "#FF99CC", "#00CCFF",
-      "#FFBC71", "#A57E81", "#8D4DFF", "#FF6666", "#CC99FF",
-      "#2F7ED8", "#0D233A", "#8BBC21", "#910000", "#1AADCE",
-      "#492970", "#F28F43", "#77A1E5", "#3366FF", "#FF6600",
-      "#808000", "#CC99FF", "#008080", "#CC6600", "#9999FF",
-      "#99FF99", "#969696", "#FF00FF", "#FFCC00", "#666699",
-      "#00FFFF", "#00CCFF", "#993366", "#3AAAAA", "#C0C0C0",
-      "#FF99CC", "#FFCC99", "#CCFFCC", "#CCFFFF", "#99CCFF",
-      "#339966", "#FF9966", "#69BBED", "#33FF33", "#6666FF",
-      "#FF66FF", "#99ABAB", "#AB8722", "#AB6565", "#990099",
-      "#999900", "#CC3300", "#669999", "#993333", "#339966",
-      "#C42525", "#A6C96A", "#111111"
-    ),
-    xaxis = list(
-      titlefont = list(
-        family = "Arial, sans-serif",
-        size = 12,
-        color = "#5078a0"
-      ),
-      color = "#606060",
-      ticks = "outside",
-      ticklen = 10,
-      tickcolor = "#c0cfe0",
-      gridcolor = "#bfc0c0",
-      linecolor = "#c0cfe0",
-      showgrid = FALSE,
-      zerolinecolor = "#c0cfe1",
-      showline = TRUE,
-      zerolinewidth = 4,
-      tickformat = "%Y-%m-%d"
-    ),
-    yaxis = list(
-      titlefont = list(
-        family = "Arial, sans-serif",
-        size = 12,
-        color = "#1199FF"
-      ),
-      color = "#606060",
-      gridcolor = "#bfc0c0",
-      linecolor = "#c0cfe0",
-      zerolinecolor = "#c0cfe1",
-      showline = TRUE,
-      rangemode = "tozero",
-      zerolinewidth = 4
-    ),
-    title = list(
-      font = list(
-        color = "#444b6e",
-        size = 16
-      )
-    ),
-    hovermode = "closest",
-    showlegend = FALSE,
-    legend = list(
-      orientation = "h",
-      y = -0.2
-    ),
-    margin = list(
-        t = 50
-    )
-  )
-}
 ```
 
 ## Load the API token {#load-the-api-token}
@@ -174,24 +101,14 @@ df <- data %>%
 ## Show tabular data
 
 ```{r}
-df %>% paged_table()
+df
 ```
 
 ## Plot the data
 
 ```{r}
-plot_ly(
-  df,
-  x = ~Time,
-  y = ~`Number of Users: Active`,
-  type = "scatter",
-  mode = "lines"
-) %>%
-  xdmod_plotly_layout %>%
-  layout(
-    xaxis = list(title = "Time"),
-    yaxis = list(title = "Number of Users: Active")
-  )
+ggplot(df, aes(x=Time,y=`Number of Users: Active`)) +
+    geom_line() + geom_point()
 ```
 
 ## Do further data processing
@@ -201,31 +118,17 @@ You can do further processing on the data frame to produce analysis and plots be
 Run the code below to add a column for the day of the week:
 
 ```{r}
-df$`Day Name` <- weekdays(df$Time)
+df$`Day Name` <- factor(
+    weekdays(df$Time), 
+    levels=c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
+             "Saturday", "Sunday"))
 df
 ```
 
 Run the code below to show a box plot of the data grouped by day of the week:
 
 ```{r}
-plot_ly(
-  df,
-  x = ~`Day Name`,
-  y = ~`Number of Users: Active`,
-  type = "box"
-) %>%
-  xdmod_plotly_layout %>%
-  layout(
-    xaxis = list(
-      title = "Day Name",
-      categoryorder = "array",
-      categoryarray = c(
-        "Sunday", "Monday", "Tuesday", "Wednesday",
-        "Thursday", "Friday", "Saturday"
-      )
-    ),
-    yaxis = list(title = "Number of Users: Active")
-  )
+ggplot(df, aes(x=`Day Name`,y=`Number of Users: Active`)) + geom_boxplot()
 ```
 
 # Details of the `get_data()` method
@@ -234,7 +137,7 @@ Now that you have seen a basic example of using the `get_data()` method, read be
 
 ## Wrap data warehouse calls in a runtime context
 
-XDMoD data is accessed over a network connection, which involves establishing connections and creating temporary resources. To ensure these connections and resources are cleaned up properly in spite of any runtime errors, you should call data warehouse methods within a **runtime context** by using the `with` statement to wrap the execution of XDMoD queries, store the result, and execute any long running calculations outside of the runtime context, as in the template below.
+XDMoD data is accessed over a network connection, which involves establishing connections and creating temporary resources. To ensure these connections and resources are cleaned up properly in spite of any runtime errors, you should call data warehouse methods within a **runtime context** by using the `with` statement in `Python` to wrap the execution of XDMoD queries, store the result, and execute any long running calculations outside of the runtime context, as in the template below. `Reticulate` in R tries to mimic such behaiviour with R `with` function. 
 
 ```{r}
 with(dw, {
@@ -279,7 +182,7 @@ You can instead specify the duration using a special string value; a list of the
 with(dw, {
   durations = dw$get_durations()
 })
-durations
+unlist(durations)
 ```
 
 ## Realm
@@ -301,7 +204,7 @@ A **metric** is a statistic for which data exists in a given realm. You can use 
 with(dw, {
   metrics = dw$describe_metrics("Jobs")
 })
-metrics %>% kable(format = "html")
+metrics %>% knitr::kable(format="html")
 ```
 
 ## Dimension
@@ -310,7 +213,7 @@ A **dimension** is a grouping of data. You can use the `describe_dimensions(real
 ```{r}
 with(dw,{
     dimensions <- dw$describe_dimensions("Jobs") })
-dimensions %>% kable(format = "html")
+dimensions %>% knitr::kable(format="html")
 ```
 
 ## Pass in realms, metrics, and dimensions using labels or IDs
@@ -373,7 +276,7 @@ The **aggregation unit** specifies how data is aggregated by time. You can get a
 with(dw,{
   aggregation_units <- dw$get_aggregation_units()
 })
-aggregation_units
+unlist(aggregation_units)
 ```
 
 ## Additional Examples
