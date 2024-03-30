@@ -23,7 +23,7 @@ Next an Anaconda environment for `xdmod-notebooks` should be created and the `xd
 
 ```
 conda activate
-conda create -y -n xdmod-notebooks python r
+conda create -y -n xdmod-notebooks python
 conda activate xdmod-notebooks
 python3 -m pip install 'xdmod-data>=1.0.0,<2.0.0'
 ```
