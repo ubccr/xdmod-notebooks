@@ -3,7 +3,7 @@ title: "XDMoD Data Analytics Framework — First Example with R and Reticulate"
 output:
   html_document:
     toc: true
-    toc_depth: '4'
+    toc_depth: 4
     df_print: paged
   pdf_document:
     df_print: kable
@@ -37,7 +37,7 @@ FutureWarning: Index.format is deprecated and will be removed in a future versio
 
 ## Load the required R libraries
 
-```{r setup, results='hide',message=FALSE,warning=FALSE}
+```{r setup, results = "hide", message = FALSE, warning = FALSE}
 library(dotenv)
 library(knitr)
 library(plotly)
@@ -93,9 +93,9 @@ with(dw, {
 
 ```{r}
 df <- data %>%
-  rownames_to_column(var="Time") %>% # Move row names to column
+  rownames_to_column(var = "Time") %>% # Move row names to column
   tibble() %>% # User newer data.frame
-  mutate(Time=ymd(Time)) # Convert character to date
+  mutate(Time = ymd(Time)) # Convert character to date
 ```
 
 ## Show tabular data
@@ -107,8 +107,8 @@ df
 ## Plot the data
 
 ```{r}
-ggplot(df, aes(x=Time,y=`Number of Users: Active`)) +
-    geom_line() + geom_point()
+ggplot(df, aes(x = Time, y = `Number of Users: Active`)) +
+  geom_line() + geom_point()
 ```
 
 ## Do further data processing
@@ -119,16 +119,19 @@ Run the code below to add a column for the day of the week:
 
 ```{r}
 df$`Day Name` <- factor(
-    weekdays(df$Time), 
-    levels=c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
-             "Saturday", "Sunday"))
+  weekdays(df$Time),
+  levels = c(
+    "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+    "Saturday", "Sunday"
+  )
+)
 df
 ```
 
 Run the code below to show a box plot of the data grouped by day of the week:
 
 ```{r}
-ggplot(df, aes(x=`Day Name`,y=`Number of Users: Active`)) + geom_boxplot()
+ggplot(df, aes(x = `Day Name`, y = `Number of Users: Active`)) + geom_boxplot()
 ```
 
 # Details of the `get_data()` method
@@ -137,7 +140,7 @@ Now that you have seen a basic example of using the `get_data()` method, read be
 
 ## Wrap data warehouse calls in a runtime context
 
-XDMoD data is accessed over a network connection, which involves establishing connections and creating temporary resources. To ensure these connections and resources are cleaned up properly in spite of any runtime errors, you should call data warehouse methods within a **runtime context** by using the `with` statement in `Python` to wrap the execution of XDMoD queries, store the result, and execute any long running calculations outside of the runtime context, as in the template below. `Reticulate` in R tries to mimic such behaiviour with R `with` function. 
+XDMoD data is accessed over a network connection, which involves establishing connections and creating temporary resources. To ensure these connections and resources are cleaned up properly in spite of any runtime errors, you should call data warehouse methods within a **runtime context** by using the Reticulate `with` function to wrap the execution of XDMoD queries, store the result, and execute any long running calculations outside of the runtime context, as in the template below. The Reticulate `with` function mimics the Python `with` statement.
 
 ```{r}
 with(dw, {
@@ -172,7 +175,7 @@ As already seen, you can specify the duration as start and end times:
 
 ```{r}
 with(dw, {
-  data <- dw$get_data(duration = c('2023-01-01', '2023-04-30'))
+  data <- dw$get_data(duration = c("2023-01-01", "2023-04-30"))
 })
 ```
 
@@ -180,7 +183,7 @@ You can instead specify the duration using a special string value; a list of the
 
 ```{r}
 with(dw, {
-  durations = dw$get_durations()
+  durations <- dw$get_durations()
 })
 unlist(durations)
 ```
@@ -191,7 +194,7 @@ A **realm** is a category of data in the XDMoD data warehouse. You can use the `
 
 ```{r}
 with(dw, {
-  realms = dw$describe_realms()
+  realms <- dw$describe_realms()
 })
 realms
 ```
@@ -202,18 +205,19 @@ A **metric** is a statistic for which data exists in a given realm. You can use 
 
 ```{r}
 with(dw, {
-  metrics = dw$describe_metrics("Jobs")
+  metrics <- dw$describe_metrics("Jobs")
 })
-metrics %>% knitr::kable(format="html")
+metrics %>% knitr::kable(format = "html")
 ```
 
 ## Dimension
 A **dimension** is a grouping of data. You can use the `describe_dimensions(realm)` method to get a data frame containing the list of valid dimensions in the given realm. The realm must be passed in as a string.
 
 ```{r}
-with(dw,{
-    dimensions <- dw$describe_dimensions("Jobs") })
-dimensions %>% knitr::kable(format="html")
+with(dw, {
+  dimensions <- dw$describe_dimensions("Jobs")
+})
+dimensions %>% knitr::kable(format = "html")
 ```
 
 ## Pass in realms, metrics, and dimensions using labels or IDs
@@ -237,7 +241,10 @@ with(dw, {
 
 ```{r}
 with(dw, {
-  filter_values <- dw$get_filter_values("Jobs", "Resource") # "resource" also works
+  filter_values <- dw$get_filter_values(
+    "Jobs",
+    "Resource" # "resource" also works
+  )
 })
 filter_values
 ```
@@ -245,7 +252,7 @@ filter_values
 For methods in the API that take filters as arguments, you must specify the filters as a dictionary in which the keys are dimensions (labels or IDs) and the values are string filter values (labels or IDs) or sequences of string filter values. For example, to return only data for which the field of science is biophysics and the resource is either NCSA Delta GPU or TACC Stampede2:
 
 ```{r}
-with(dw,{
+with(dw, {
   data <- dw$get_data(
     filters = list(
       "Field of Science" = "Biophysics", # "fieldofscience" = "246" also works
@@ -273,7 +280,7 @@ with(dw, {
 The **aggregation unit** specifies how data is aggregated by time. You can get a list of valid aggregation units by calling the `get_aggregation_units()` method.
 
 ```{r}
-with(dw,{
+with(dw, {
   aggregation_units <- dw$get_aggregation_units()
 })
 unlist(aggregation_units)
