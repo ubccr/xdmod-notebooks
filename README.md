@@ -58,7 +58,14 @@ We welcome your contributions of new notebooks or edits to existing notebooks th
 ## License
 The notebooks in this repository are released under the GNU Lesser General Public License ("LGPL") Version 3.0. See the [LICENSE](LICENSE) file for details.
 
-## Reference
+## References
+
+When referencing the Data Analytics Framework for XDMoD, please cite the following publication:
+
+> Weeden, A., White, J.P., DeLeon, R.L., Rathsam, R., Simakov, N.A., Saeli, C., and Furlani, T.R. The Data Analytics Framework for XDMoD. _SN COMPUT. SCI._ 5, 462 (2024). https://doi.org/10.1007/s42979-024-02789-2
+
 When referencing XDMoD, please cite the following publication:
 
-> Jeffrey T. Palmer, Steven M. Gallo, Thomas R. Furlani, Matthew D. Jones, Robert L. DeLeon, Joseph P. White, Nikolay Simakov, Abani K. Patra, Jeanette Sperhac, Thomas Yearke, Ryan Rathsam, Martins Innus, Cynthia D. Cornelius, James C. Browne, William L. Barth, Richard T. Evans, "Open XDMoD: A Tool for the Comprehensive Management of High-Performance Computing Resources", *Computing in Science & Engineering*, Vol 17, Issue 4, 2015, pp. 52-62. DOI:10.1109/MCSE.2015.68
+> Jeffrey T. Palmer, Steven M. Gallo, Thomas R. Furlani, Matthew D. Jones, Robert L. DeLeon, Joseph P. White, Nikolay Simakov, Abani K. Patra, Jeanette Sperhac, Thomas Yearke, Ryan Rathsam, Martins Innus, Cynthia D. Cornelius, James C. Browne, William L. Barth, Richard T. Evans, "Open XDMoD: A Tool for the Comprehensive Management of High-Performance Computing Resources", *Computing in Science & Engineering*, Vol 17, Issue 4, 2015, pp. 52-62. DOI:[10.1109/MCSE.2015.68](https://doi.org/10.1109/MCSE.2015.68)
+
+
