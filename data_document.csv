@@ -1,4 +1,1 @@
-title,url,etc
-Yesterday,Accounts,Number of Unique Accounts: Created (Number of Accounts),None,timeseries,Auto,"Description: The total number of unique users accounts created (on the specified resource) during this time period.
-Summarizes all of the accounts data.
-"
+ID,Sample Query,Duration,realm,Metric,Dimension,Data Set Type,Aggregation,Description,URL
