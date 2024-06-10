@@ -9,7 +9,7 @@
 ## Motivation and Context
 <!--- Why is this change required? What problem does it solve? -->
 <!--- If it fixes an open issue, please link to the issue here. -->
-it
+
 ## Checklist:
 <!--- Go over all the following points and make sure they have all been completed -->
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
