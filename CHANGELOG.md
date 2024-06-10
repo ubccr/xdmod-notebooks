@@ -1,6 +1,6 @@
 # `xdmod-notebooks` Changelog
 
-## Main development branch
+## v1.0.1 (2024-06-XX)
 - Update README to account for different release versions ([\#17](https://github.com/ubccr/xdmod-notebooks/pull/17)).
 - Add Changelog ([\#19](https://github.com/ubccr/xdmod-notebooks/pull/19)).
 - Mention in intro notebook that aggregate data is returned as a Pandas Series ([\#20](https://github.com/ubccr/xdmod-notebooks/pull/20)).
