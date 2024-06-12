@@ -3,9 +3,10 @@
 ## Contributing a Pull Request
 
 1. If updating existing notebooks:
-    1. Increment the notebook minor version number and date at the top of the notebook (e.g., 1.0 becomes 1.1).
-    1. If applicable, update the version of the XDMoD Data Analytics Framework at the top and bottom of the notebook.
-    1. If applicable, increment the copyright year of the notebook (e.g., 2023 becomes 2023–2024 becomes 2023–2025).
+    1. At the top of the notebook:
+        1. Increment the notebook minor version number (e.g., 1.0 becomes 1.1) and date.
+        1. If applicable, update the minimum and maximum compatible versions of the XDMoD Data Analytics Framework.
+        1. If applicable, increment the copyright year (e.g., 2023 becomes 2023–2024 becomes 2023–2025).
     1. Clear out output cells by running the following command, replacing `foo.ipynb` with the name of the notebook file (requires the `jupyter` command, which may be available through anaconda by running `conda activate` first):
         ```
         jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace foo.ipynb
@@ -17,9 +18,7 @@
 ## Releasing a new version
 
 1. Make a new branch of `xdmod-notebooks` and:
-    1. For each notebook, including those in the `R` directory:
-        1. Increment the document version at the top to the next major version (e.g., 1.1 becomes 2.0) and the expected release date.
-        1. Make sure the XDMoD Data Analytics Framework version number is updated at the top and bottom of the document.
+    1. For each notebook, including those in the `R` directory, increment the document version at the top to the next major version (e.g., 1.1 becomes 2.0) and the expected release date.
     1. Update `CHANGELOG.md` to change `Main development branch` to, e.g., `v1.0.1 (2024-06-XX)`.
     1. Run all notebooks and make sure they work.
     1. Create a Pull Request for the new version.
