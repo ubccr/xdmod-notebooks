@@ -9,7 +9,9 @@ output:
     df_print: kable
 ---
 
-v1.0.1
+Notebook v2.0 (2024-06-XX)
+
+XDMoD Data Analytics Framework v1.0.1
 
 © 2024 University at Buffalo Center for Computational Research
 
