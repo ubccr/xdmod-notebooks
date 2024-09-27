@@ -9,7 +9,7 @@ output:
     df_print: kable
 ---
 
-Notebook v2.0 (2024-06-XX)
+Notebook v2.0 (2024-09-27)
 
 Compatible with XDMoD Data Analytics Framework v≥1.0.0 and <2.0.0
 
