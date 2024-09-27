@@ -30,3 +30,11 @@
     1. Where it says `Describe this release`, paste in the contents of the release's section in `CHANGELOG.md`.
     1. Where it says `Attach binaries`, attach the built distribution that was uploaded to PyPI.
     1. Click `Publish release`.
+
+## After release
+
+1. Make a new branch of `xdmod-notebooks` and:
+    1. Make sure the version number is updated in `xdmod_data/__version__.py` to a beta release of the next version, e.g., `1.0.1-beta.1`.
+    1. Update `CHANGELOG.md` to add a section at the top called `Main development branch`.
+    1. Create a Pull Request for the new version.
+    1. Once the Pull Request is approved, merge it into `main`.
