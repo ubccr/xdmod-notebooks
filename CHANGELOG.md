@@ -1,5 +1,7 @@
 # `xdmod-notebooks` Changelog
 
+## Main development branch
+
 ## v1.0.1 (2024-09-27)
 
 This release adds an example R Markdown file, replaces the machine learning
