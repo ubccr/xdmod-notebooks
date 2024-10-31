@@ -1,6 +1,8 @@
 # `xdmod-notebooks` Changelog
 
-## Main development branch
+## v1.x.y (development branch)
+
+- Prepare for v1.0.3 development ([\#37](https://github.com/ubccr/xdmod-notebooks/pull/37)).
 
 ## v1.0.2 (2024-10-31)
 
