@@ -34,12 +34,18 @@
    and:
     1. Click `Choose a tag`.
     1. Type in a tag similar to `v1.0.0` and choose `Create new tag`.
+    1. Choose the correct target based on the major version you are developing.
     1. Make the release title the same as the tag name (e.g., `v1.0.0`).
     1. Where it says `Describe this release`, paste in the contents of the
-       release's section in `CHANGELOG.md`.
+       release's section in `CHANGELOG.md`. Note that single newlines are
+       interpreted as line breaks, so you may need to reformat the description
+       to break the lines where you want them to break.
     1. Click `Publish release`.
     1. Go to the [GitHub milestones](https://github.com/ubccr/xdmod-data/milestones)
        and close the milestone for the version.
+
+## After release
+
 1. If this is a minor or patch release to a version that is not the most recent
    major version,
     1. For each major version above this release's major version,
@@ -49,9 +55,6 @@
                the new version, making sure to replace the version number in
                the link text and in the URL.
             1. Update the Open XDMoD compatibility matrix.
-
-## After release
-
 1. In a Pull Request to the `main` branch of `xdmod-notebooks`:
     1. In `README.md`, under the main heading, in the sentence that begins,
        `This documentation is for ...`, replace the version number in bold,
