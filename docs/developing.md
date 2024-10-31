@@ -46,26 +46,23 @@
 
 ## After release
 
-1. If this is a minor or patch release to a version that is not the most recent
-   major version,
-    1. For each major version above this release's major version, in a Pull
-       Request,
-        1. Add the entry for this version to the `CHANGELOG.md`.
-        1. In the `README.md`:
-            1. Add an item to the top of the bulleted list for
-               the new version, making sure to replace the version number in
-               the link text and in the URL.
-            1. Update the Open XDMoD compatibility matrix.
-1. In a Pull Request to the `main` branch of `xdmod-notebooks`:
-    1. In `README.md`, under the main heading, in the sentence that begins,
-       `This documentation is for ...`, replace the version number in bold,
-       e.g.:
-        ```
-        This documentation is for **v1.x.y (development branch)**.
-        ```
-    1. Update `CHANGELOG.md` to add a section at the top called
-       `v1.x.y (development branch)`, replacing `1` with the major version under
-       development (add `main` before `development branch` if it is also the
-       main development branch.
-1. Go to the [GitHub milestones](https://github.com/ubccr/xdmod-notebooks/milestones)
-   and add a milestone for the version under development.
+1. For each major version branch, in a Pull Request,
+    1. In `CHANGELOG.md`:
+        1. Add a section at the top called `v1.x.y (development branch)`,
+           replacing `1` with the major version under development (add `main`
+           before `development branch` if it is also the main development
+           branch.
+        1. Add the entry for the version that was just released, if it isn't
+           already there.
+    1. In the `README.md`:
+        1. Add an item to the top of the bulleted list for
+           the new version, making sure to replace the version number in
+           the link text and in the URL.
+        1. Under the main heading, in the sentence that begins,
+           `This documentation is for ...`, replace the version number in bold,
+           e.g.:
+            ```
+            This documentation is for **v1.x.y (development branch)**.
+            ```
+    1. Go to the [GitHub milestones](https://github.com/ubccr/xdmod-notebooks/milestones)
+       and add a milestone for the version under development.
