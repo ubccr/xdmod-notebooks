@@ -2,7 +2,7 @@
 
 ## v1.x.y (development branch)
 
-- Prepare for v1.0.3 development ([\#37](https://github.com/ubccr/xdmod-notebooks/pull/37)).
+- Prepare for v1.1.0 development ([\#38](https://github.com/ubccr/xdmod-notebooks/pull/38)).
 
 ## v1.0.2 (2024-10-31)
 

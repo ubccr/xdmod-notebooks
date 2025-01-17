@@ -13,11 +13,11 @@
 ## Checklist:
 <!--- Go over all the following points and make sure they have all been completed -->
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
-- For each notebook I changed:
-    - [ ] I have incremented the minor version number at the top of the notebook (e.g., 1.0 becomes 1.1).
+- For each notebook changed:
+    - [ ] The minor version number at the top of the notebook has been incremented (e.g., 1.0 becomes 1.1).
     - [ ] The compatibility with the XDMoD Data Analytics Framework is correctly documented at the top of the notebook.
     - [ ] The copyright year is (years are) correct at the top of the notebook.
-    - [ ] I have run all cells in the notebook and confirmed they work.
+    - [ ] All cells in the notebook have been run and confirmed they work.
 - [ ] `CHANGELOG.md` has been updated.
 - [ ] The appropriate labels have been added to the pull request.
 - [ ] The milestone is set correctly on the pull request.
