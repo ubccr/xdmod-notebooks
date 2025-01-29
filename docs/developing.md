@@ -4,16 +4,25 @@
 
 1. If updating existing notebooks:
     1. At the top of the notebook:
-        1. Increment the notebook minor version number (e.g., 1.0 becomes 1.1) and date.
-        1. If applicable, update the minimum and maximum compatible versions of the XDMoD Data Analytics Framework.
-        1. If applicable, increment the copyright year (e.g., 2023 becomes 2023–2024 becomes 2023–2025).
-    1. Clear out output cells by running the following command, replacing `foo.ipynb` with the name of the notebook file (requires the `jupyter` command, which may be available through anaconda by running `conda activate` first):
+        1. Increment the notebook minor version number (e.g., 1.0 becomes 1.1)
+           and date.
+        1. If applicable, update the minimum and maximum compatible versions of
+           the XDMoD Data Analytics Framework.
+        1. If applicable, increment the copyright year (e.g., 2023 becomes
+           2023–2024 becomes 2023–2025).
+    1. Clear out output cells by running the following command, replacing
+       `foo.ipynb` with the name of the notebook file (requires the `jupyter`
+       command, which may be available through anaconda by running `conda
+       activate` first):
         ```
         jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace foo.ipynb
         ```
     1. Create a Pull Request.
-    1. Update `CHANGELOG.md` in the Pull Request to add an item under `Main development branch` (create that section if it does not already exist) that has the title, number, and URL of the Pull Request.
-    1. Once the Pull Request is approved, before merging it, update the release dates at the top of the notebooks you changed.
+    1. Update `CHANGELOG.md` in the Pull Request to add an item under the
+       current `development branch` section that has the title, number, and URL
+       of the Pull Request.
+    1. Once the Pull Request is approved, before merging it, update the release
+       dates at the top of the notebooks you changed.
 
 ## Releasing a new version
 
