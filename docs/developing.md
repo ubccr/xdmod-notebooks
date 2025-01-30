@@ -27,6 +27,20 @@
 ## Releasing a new version
 
 1. Make a new branch of `xdmod-notebooks` and:
+    1. In `README.md`:
+        1. Under the main heading,
+            1. In the sentence that begins, `This documentation is for ...`,
+               replace the version number in bold, e.g.:
+                ```
+                This documentation is for **v1.0.2**.
+                ```
+            1. Add the following item to the list, replacing `1` with the major
+               version number of the new release. The development branches
+               should be listed in order of major version, ascending (`1.x.y`,
+               `2.x.y`, etc.):
+                ```
+                - [v1.x.y (development branch)](https://github.com/ubccr/xdmod-notebooks/tree/v1.x.y?tab=readme-ov-file#xdmod-notebooks)
+                ```
     1. For each notebook, including those in the `R` directory, if any changes
        were made to the notebook since the last version, increment the document
        version at the top to the next major version (e.g., 1.1 becomes 2.0) and
@@ -48,9 +62,10 @@
     1. Where it says `Describe this release`, paste in the contents of the
        release's section in `CHANGELOG.md`. Note that single newlines are
        interpreted as line breaks, so you may need to reformat the description
-       to break the lines where you want them to break.
+       to break the lines where you want them to break. Use the `Preview` to
+       make sure it looks right.
     1. Click `Publish release`.
-    1. Go to the [GitHub milestones](https://github.com/ubccr/xdmod-data/milestones)
+    1. Go to the [GitHub milestones](https://github.com/ubccr/xdmod-notebooks/milestones)
        and close the milestone for the version.
 
 ## After release
@@ -58,9 +73,9 @@
 1. For each major version branch, in a Pull Request,
     1. In `CHANGELOG.md`:
         1. Add a section at the top called `v1.x.y (development branch)`,
-           replacing `1` with the major version under development (add `main`
-           before `development branch` if it is also the main development
-           branch.
+           replacing `1` with the major version under development (if it is
+           also the main development branch, replace `development branch` with
+           `main development branch`).
         1. Add the entry for the version that was just released, if it isn't
            already there.
     1. In the `README.md`:
