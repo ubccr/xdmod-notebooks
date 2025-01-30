@@ -1,5 +1,7 @@
 # `xdmod-notebooks` Changelog
 
+## v1.x.y (development branch)
+
 ## v1.0.3 (2025-01-30)
 
 This release simply increments the version number to sync with the `xdmod-data`

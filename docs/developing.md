@@ -78,15 +78,18 @@
            `main development branch`).
         1. Add the entry for the version that was just released, if it isn't
            already there.
-    1. In the `README.md`:
-        1. Add an item to the top of the bulleted list for
-           the new version, making sure to replace the version number in
-           the link text and in the URL.
+    1. In `README.md`:
         1. Under the main heading, in the sentence that begins,
            `This documentation is for ...`, replace the version number in bold,
            e.g.:
             ```
             This documentation is for **v1.x.y (development branch)**.
             ```
-    1. Go to the [GitHub milestones](https://github.com/ubccr/xdmod-notebooks/milestones)
-       and add a milestone for the version under development.
+        1. Add an item to the top of the bulleted list for
+           the new version, making sure to replace the version number in
+           the link text and in the URL.
+        1. Remove the item from the bulleted list for the `v1.x.y (development
+           branch)` (where `1` is the major version number).
+    1. Get the Pull Request approved and merged.
+1. Go to the [GitHub milestones](https://github.com/ubccr/xdmod-notebooks/milestones)
+   and add a milestone for the version under development.
