@@ -4,12 +4,12 @@ This repository contains example Jupyter notebooks demonstrating how to use the
 XDMoD Data Analytics Framework via the [`xdmod-data`
 package](https://pypi.org/project/xdmod-data/).
 
-This documentation is for **v1.0.3**. For documentation of other versions:
+This documentation is for **v1.x.y (development branch)**. For documentation of other versions:
 
+- [v1.0.3](https://github.com/ubccr/xdmod-notebooks/tree/v1.0.3?tab=readme-ov-file#xdmod-notebooks)
 - [v1.0.2](https://github.com/ubccr/xdmod-notebooks/tree/v1.0.2?tab=readme-ov-file#xdmod-notebooks)
 - [v1.0.1](https://github.com/ubccr/xdmod-notebooks/tree/v1.0.1?tab=readme-ov-file#xdmod-notebooks)
 - [v1.0.0](https://github.com/ubccr/xdmod-notebooks/tree/v1.0.0?tab=readme-ov-file#xdmod-notebooks)
-- [v1.x.y (development branch)](https://github.com/ubccr/xdmod-notebooks/tree/v1.x.y?tab=readme-ov-file#xdmod-notebooks)
 - [v2.x.y (main development branch)](https://github.com/ubccr/xdmod-notebooks/tree/main?tab=readme-ov-file#xdmod-notebooks)
 
 ## Download
