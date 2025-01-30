@@ -2,7 +2,10 @@
 
 ## v2.x.y (main development branch)
 
-- Prepare for v2.0.0 development ([\#36](https://github.com/ubccr/xdmod-notebooks/pull/36)).
+## v1.0.3 (2025-01-30)
+
+This release simply increments the version number to sync with the `xdmod-data`
+release v1.0.3.
 
 ## v1.0.2 (2024-10-31)
 
