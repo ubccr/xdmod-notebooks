@@ -48,18 +48,19 @@ JupyterLab either through Anaconda or Docker.
 ## Usage
 
 * Once you have JupyterLab open, you can upload and run the notebooks from your
-  copy of this repository by clicking the Upload button (![Screenshot of upload
-  button](docs/img/jupyter-upload.jpg)). If you are not familiar with Jupyter
-  notebooks, the "Help" tab may provide useful information.
+  copy of the `examples` directory in this repository by clicking the Upload
+  button (![Screenshot of upload button](docs/img/jupyter-upload.jpg)). If you
+  are not familiar with Jupyter notebooks, the "Help" tab may provide useful
+  information.
 * The notebooks can be run independently and in any order; however, you may
   find this order to be the most helpful when starting out:
-    1. XDMoD-Data-First-Example.ipynb
-    1. XDMoD-Data-Raw-Data-Example.ipynb
-    1. XDMoD-Data-Machine-Learning-Example.ipynb
+    1. Intro.ipynb
+    1. Raw-Data.ipynb
+    1. Machine-Learning.ipynb
 
 ### R example
 
-An example R Markdown file is available [here](R).
+An example R Markdown file is available [examples/R](examples/R) directory.
 
 ## Feedback / Feature Requests
 
