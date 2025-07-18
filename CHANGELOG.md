@@ -1,6 +1,14 @@
 # `xdmod-notebooks` Changelog
 
-## v2.x.y (main development branch)
+## v1.1.0 (2025-07-XX)
+
+This release adds support for running in an XDMoD-hosted JupyterHub, adds a
+report template for ACCESS Resource Providers, adds a choropleth example to
+the intro notebook, renames the notebooks and moves them into an `examples`
+directory, and makes various edits for readability.
+
+- Update for JupyterHub support, add choropleth example, and rename notebooks
+  ([\#49](https://github.com/ubccr/xdmod-notebooks/pull/49)).
 
 ## v1.0.3 (2025-01-30)
 
