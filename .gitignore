@@ -133,3 +133,4 @@ dmypy.json
 
 # Vi swap files
 .*.swp
+.*.swo

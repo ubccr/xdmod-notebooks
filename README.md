@@ -1,8 +1,8 @@
 # xdmod-notebooks
 
 This repository contains example Jupyter notebooks demonstrating how to use the
-XDMoD Data Analytics Framework via the [`xdmod-data`
-package](https://pypi.org/project/xdmod-data/).
+XDMoD Data Analytics Framework via the
+[`xdmod-data`](https://pypi.org/project/xdmod-data/) package.
 
 This documentation is for **v2.x.y (main development branch)**. For
 documentation of other versions:
@@ -21,8 +21,13 @@ the [releases page](https://github.com/ubccr/xdmod-notebooks/releases) — under
 
 ## Setup
 
-Follow the instructions below to set up your system to run the notebooks in
-JupyterLab either through Anaconda or Docker.
+The notebooks are included in the JupyterHub hosted by [ACCESS
+XDMoD](https://xdmod.access-ci.org) — sign in with your ACCESS account and
+click the JupyterLab button in the top toolbar.
+
+Otherwise, to run the notebooks on a different machine, follow the instructions
+below to set up the machine to run the notebooks in JupyterLab either through
+Anaconda or Docker.
 
 ### Anaconda
 
@@ -46,21 +51,26 @@ JupyterLab either through Anaconda or Docker.
     docker start -i xdmod-notebooks
     ```
 
+### Upload notebooks
+
+Once you have JupyterLab open, you can upload and run the notebooks from your
+copy of the `examples` directory in this repository by clicking the Upload
+button (![Screenshot of upload button](docs/img/jupyter-upload.jpg)). If you
+are not familiar with Jupyter notebooks, the "Help" tab may provide useful
+information.
+
 ## Usage
 
-* Once you have JupyterLab open, you can upload and run the notebooks from your
-  copy of this repository by clicking the Upload button (![Screenshot of upload
-  button](docs/img/jupyter-upload.jpg)). If you are not familiar with Jupyter
-  notebooks, the "Help" tab may provide useful information.
-* The notebooks can be run independently and in any order; however, you may
-  find this order to be the most helpful when starting out:
-    1. XDMoD-Data-First-Example.ipynb
-    1. XDMoD-Data-Raw-Data-Example.ipynb
-    1. XDMoD-Data-Machine-Learning-Example.ipynb
+The notebooks can be run independently and in any order; however, you may find
+this order to be the most helpful when starting out:
+
+1. Intro.ipynb
+1. Raw-Data.ipynb
+1. Machine-Learning.ipynb
 
 ### R example
 
-An example R Markdown file is available [here](R).
+An example R Markdown file is available [examples/R](examples/R) directory.
 
 ## Feedback / Feature Requests
 
@@ -76,9 +86,11 @@ you email for support, please include the following:
     from xdmod_data import __version__
     print(__version__)
     ```
-* Operating system version.
-* Anaconda or Docker version.
-* JupyterLab version.
+* Web browser version.
+* If you are *not* running in the ACCESS XDMoD-hosted JupyterHub:
+    * Operating system version.
+    * Anaconda or Docker version.
+    * JupyterLab version.
 * Name of the notebook you are using.
 * Version number of the notebook listed at the top and bottom of the notebook.
 * A description of the problem you are experiencing.
