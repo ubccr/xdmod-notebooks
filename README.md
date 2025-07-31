@@ -59,7 +59,8 @@ this order to be the most helpful when starting out:
 
 ### R example
 
-An example R Markdown file is available [examples/R](examples/R) directory.
+An example R Markdown file is available in the [examples/R](examples/R)
+directory.
 
 ## Feedback / Feature Requests
 
