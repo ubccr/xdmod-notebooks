@@ -4,21 +4,6 @@ This repository contains example Jupyter notebooks demonstrating how to use the
 XDMoD Data Analytics Framework via the
 [`xdmod-data`](https://pypi.org/project/xdmod-data/) package.
 
-This documentation is for **v2.x.y (main development branch)**. For
-documentation of other versions:
-
-- [v1.0.3](https://github.com/ubccr/xdmod-notebooks/tree/v1.0.3?tab=readme-ov-file#xdmod-notebooks)
-- [v1.0.2](https://github.com/ubccr/xdmod-notebooks/tree/v1.0.2?tab=readme-ov-file#xdmod-notebooks)
-- [v1.0.1](https://github.com/ubccr/xdmod-notebooks/tree/v1.0.1?tab=readme-ov-file#xdmod-notebooks)
-- [v1.0.0](https://github.com/ubccr/xdmod-notebooks/tree/v1.0.0?tab=readme-ov-file#xdmod-notebooks)
-- [v1.x.y (development branch)](https://github.com/ubccr/xdmod-notebooks/tree/v1.x.y?tab=readme-ov-file#xdmod-notebooks)
-
-## Download
-
-The latest version of this `xdmod-notebooks` repository can be downloaded from
-the [releases page](https://github.com/ubccr/xdmod-notebooks/releases) — under
-"Assets," click one of the "Source code" links.
-
 ## Setup
 
 The notebooks are included in the JupyterHub hosted by [ACCESS
@@ -51,7 +36,11 @@ Anaconda or Docker.
     docker start -i xdmod-notebooks
     ```
 
-### Upload notebooks
+### Download and upload notebooks
+
+The latest version of this `xdmod-notebooks` repository can be downloaded from
+the [releases page](https://github.com/ubccr/xdmod-notebooks/releases) — under
+"Assets," click one of the "Source code" links.
 
 Once you have JupyterLab open, you can upload and run the notebooks from your
 copy of the `examples` directory in this repository by clicking the Upload
@@ -70,7 +59,8 @@ this order to be the most helpful when starting out:
 
 ### R example
 
-An example R Markdown file is available [examples/R](examples/R) directory.
+An example R Markdown file is available in the [examples/R](examples/R)
+directory.
 
 ## Feedback / Feature Requests
 
