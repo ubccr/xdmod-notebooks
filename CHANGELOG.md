@@ -1,6 +1,6 @@
 # `xdmod-notebooks` Changelog
 
-## v1.1.0 (2025-07-XX)
+## v1.1.0 (2025-07-21)
 
 This release adds support for running in an XDMoD-hosted JupyterHub, adds a
 Jupyter notebook for making reports for ACCESS Resource Providers, adds a
